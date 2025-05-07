@@ -274,3 +274,60 @@ Luego hacer el commit correspondiente al cambio agregado.<br><br>
 
 **Profesor:** Ariel Betancud
 
+
+# Clase 5: ¿Qué es el staging?
+
+Cuando trabajamos en un proyecto, tenemos una carpeta o directorio con los archivos, por ejemplo, `historia.txt`. Al ejecutar `git init` en la consola, se crea un área en la memoria RAM llamada **staging** y un repositorio, que es la carpeta `.git` donde se almacenan todos los cambios del proyecto.
+
+### Flujo de trabajo:
+1. **Área de trabajo**: Donde editamos los archivos.
+2. **Staging (área de preparación)**: Al usar `git add historia.txt`, los cambios pasan al staging, que está en la memoria RAM.
+3. **Repositorio**: Con `git commit -m "Mensaje"`, los cambios se guardan en la rama `master` del repositorio, generando un **hash** (identificador único del commit con letras y números).
+
+---
+
+# ¿Qué es Gitflow?
+
+**Gitflow** es un modelo alternativo para gestionar ramas en Git, propuesto por Vincent Driessen. Utiliza ramas de función y varias ramas principales para organizar el desarrollo.
+
+---
+
+# ¿Qué es una rama (branch) y cómo funciona un merge en Git?
+
+- **Rama (branch)**: La rama principal, llamada `master`, contiene los cambios estables de los archivos. Cada `commit` crea una nueva versión.
+- **Ramas adicionales**:
+  - **Development**: Rama experimental para nuevas versiones.
+  - **Hotfix**: Rama para corregir errores urgentes (bugs).
+- **Merge**: Proceso de unir los cambios de una rama (como `development` o `hotfix`) a la rama `master` cuando los resultados son satisfactorios.
+
+### Características de las ramas principales:
+- Solo existe una rama de cada tipo (`master`, `develop`).
+- No reciben código directamente mediante commits; siempre se integran a través de ramas auxiliares (`Feature`, `Release`, `Hotfix`).
+- Recibir código directamente en `master` es arriesgado, ya que puede introducir defectos en producción. Por eso, se integran cambios primero en otras ramas.
+
+Gitflow es una metodología estricta, pero puede adaptarse según el equipo. En casos excepcionales, expertos pueden omitir algunas normas, pero siempre con precaución.
+
+---
+
+# Ramas auxiliares
+
+1. **Feature**: Para desarrollar nuevas características, requisitos o historias de usuario. Se crean tantas como sea necesario.
+2. **Release**: Para estandarizar o depurar código desarrollado en `develop` antes de integrarlo a `master`.
+3. **Hotfix**: Para corregir defectos críticos en producción, generando una release puntual.
+
+Estas ramas tienen un ciclo de vida definido: se crean, se mergean con `master` o `develop`, y luego se eliminan.
+
+---
+
+# Consideraciones importantes
+
+- Podemos crear tantas ramas y repositorios como necesitemos.
+- Es crucial gestionar bien los **merges**, ya que pueden surgir **conflictos** o **bugs** si los archivos interfieren entre sí.
+
+---
+
+# Resumen
+
+Hoy fue una sesión teórica, repasando los conceptos de Git y Gitflow explicados por la profesora Naty.
+
+**Profesor: Ariel Betancud**

@@ -331,3 +331,76 @@ Estas ramas tienen un ciclo de vida definido: se crean, se mergean con `master` 
 Hoy fue una sesión teórica, repasando los conceptos de Git y Gitflow explicados por la profesora Naty.
 
 **Profesor: Ariel Betancud**
+
+## Clase 6 - Miércoles 14 de Mayo de 2025
+
+## Volver en el tiempo en nuestro repositorio utilizando `reset` y `checkout` (Parte 6)
+
+### Instrucciones iniciales
+1. **Abrir Git Bash** en Windows *o* la **terminal** en Linux/Mac.  
+2. En Git Bash, **abrir como administrador**.  
+3. En terminal, usar `sudo` para permisos especiales si es necesario.
+
+### Tarea
+Agregar **comentarios explicativos** a cada comando para entender su función.
+
+### Comandos y pasos
+```bash
+cd tecnicatura              # Cambia al directorio 'tecnicatura'
+cd class-git                # Cambia al directorio 'class-git'
+ls                          # Lista los archivos en el directorio actual
+touch historia.txt          # Crea un archivo vacío llamado 'historia.txt'
+cd ..                       # Retrocede al directorio superior
+code .                      # Abre el proyecto en VS Code para editar 'historia.txt'
+
+git commit -a               # Realiza un commit de todos los archivos modificados
+# En el editor Vim:
+#   Presionar 'Esc + i' para entrar en modo escritura
+#   Presionar 'Esc' para salir del modo escritura
+#   Escribir ':wq!' y Enter para guardar y salir
+
+git log                     # Muestra el historial de commits
+git show                    # Muestra los detalles del commit más reciente
+git log --oneline           # Muestra el historial de commits en una sola línea por commit
+# Copiar el hash corto del commit seleccionado
+
+git reset <hash>            # Vuelve a una versión anterior del repositorio (reset suave por defecto)
+git status                  # Verifica el estado del repositorio y muestra cambios pendientes
+git add .                   # Agrega todos los cambios al staging
+git commit -m "Agregamos datos de estudios en historia.txt"  # Crea un nuevo commit
+
+git config --list           # Muestra la configuración de Git (nombre, email, etc.)
+git log --oneline           # Muestra nuevamente el historial de commits
+# Copiar el hash del commit deseado
+git reset --hard <hash>     # Reset duro: restaura el repo al estado del commit y elimina cambios posteriores
+
+# Crear, modificar y commitear nuevamente 'historia.txt', dejando cambios en staging
+git reset --soft <hash>     # Reset suave: conserva cambios en staging
+git diff                    # Muestra diferencias entre el working directory y el staging
+git add .                   # Agrega todos los cambios al staging
+git status                  # Verifica que los cambios están en staging
+git commit -m "Commiteamos lo último de hoy"  # Crea un nuevo commit
+
+git log                     # Muestra el historial de commits
+# Hacer cambios en 'historia.txt', guardar con Ctrl + S
+git diff                    # Muestra los cambios realizados
+# Agregar más cambios a 'historia.txt'
+git commit -am "cambio en la última línea del historia.txt"  # Agrega y commitea los cambios
+
+git log                     # Muestra el historial de commits
+# Presionar 'q' para salir
+git log --stat              # Muestra estadísticas de cambios por commit (archivos modificados, bits)
+# Presionar 'q' para salir
+# Copiar el hash del primer commit
+git checkout <hash>         # Cambia al estado del archivo en el commit especificado
+git status                  # Verifica el estado actual del repositorio
+git checkout master         # Vuelve a la rama principal (master)
+
+git checkout <hash>         # Vuelve al estado del commit especificado
+# Modificar 'historia.txt'
+git commit -am "Reemplazo de una versión por otra de la historia"  # Commitea los cambios
+git log                     # Muestra el historial actualizado
+
+git branch cambios          # Crea una nueva rama llamada 'cambios'
+git checkout master         # Vuelve a la rama principal
+

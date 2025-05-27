@@ -38,3 +38,17 @@ Operadores de aumento
 
 operadores de decremento
 --
+ejemplo: let z = --a; //predecremento
+ejemplo: z = a--; //posdecremento
+
+operador distinto, diferente (boolean)
+!= comprueba valores sin revisar el tipo 
+!== comprueba el valor y tambien el tipo 
+
+operadores relacionales (boolean)
+>
+<=
+>=
+operadores logicos 
+and -> && doble espersan // los dos tiene que fer V si uno no lo es es f
+or -> 

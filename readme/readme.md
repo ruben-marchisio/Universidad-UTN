@@ -494,3 +494,358 @@ git add .                 # Agregamos todos los archivos del directorio actual
 
 git commit -m "Iniciando el primer commit"  # Confirmamos los cambios (primer commit)
 
+# CLASE 8 - MIÉRCOLES 28 DE MAYO DEL 2025  
+## Portafolio 2  
+### Flujo de trabajo básico con un repositorio remoto (parte 8)
+
+---
+
+Cuando empiezas a trabajar en un entorno local, el proyecto vive únicamente en tu computadora. Esto significa que no hay forma de que otros miembros del equipo trabajen en él.
+
+Para solucionar esto, utilizamos los **servidores remotos**: un nuevo estado que deben seguir nuestros archivos para conectarse y trabajar con equipos de cualquier parte del mundo.
+
+Estos servidores remotos pueden estar alojados en **GitHub**, **GitLab**, **BitBucket**, entre otros. Lo que van a hacer es guardar el mismo repositorio que tienes en tu computadora y darnos una URL con la que todos podremos acceder a los archivos del proyecto. Así, el equipo podrá descargarlos, hacer cambios y volverlos a enviar al servidor remoto para que otras personas vean los cambios, comparen sus versiones y creen nuevas propuestas para el proyecto.
+
+Esto significa que debes aprender algunos nuevos comandos:
+
+---
+
+## Comandos para trabajo remoto con GIT
+
+- `git clone url_del_servidor_remoto`  
+  Nos permite descargar los archivos de la última versión de la rama principal y todo el historial de cambios en la carpeta `.git`
+
+- `git push`  
+  Luego de hacer `git add` y `git commit` debemos ejecutar este comando para mandar los cambios al servidor remoto.
+
+- `git fetch`  
+  Lo usamos para traer actualizaciones del servidor remoto y guardarlas en nuestro repositorio local (en caso de que hayan, por supuesto).
+
+- `git merge`  
+  También usamos el comando git merge con servidores remotos. Lo necesitamos para combinar los últimos cambios del servidor remoto y nuestro directorio de trabajo.
+
+- `git pull`  
+  Básicamente, git fetch y git merge al mismo tiempo.
+
+---
+
+## Adicionalmente, tenemos otros comandos que nos sirven para trabajar en proyectos muy grandes:
+
+- `git log --oneline`  
+  Te muestra el id commit y el título del commit.
+
+- `git log --decorate`  
+  Te muestra dónde se encuentra el head point en el log.
+
+- `git log --stat`  
+  Explica el número de líneas que se cambiaron brevemente.
+
+- `git log -p`  
+  Explica el número de líneas que se cambiaron y te muestra qué se cambió en el contenido.
+
+- `git shortlog`  
+  Indica qué commits ha realizado un usuario, mostrando el usuario y el título de sus commits.
+
+- `git log --graph --oneline --decorate --all`  
+  Muestra un gráfico resumido de las ramas y commits.
+
+- `git log -3`  
+  Limitamos el número de commits.
+
+- `git log --after="2018-1-2"`  
+- `git log --after="today"`  
+- `git log --after="2018-1-2" --before="today"`  
+  Commits para localizar por fechas.
+
+- `git log --author="Name Author"`  
+  Commits hechos por autor que cumplan exactamente con el nombre.
+
+- `git log --grep="INVIE"`  
+  Busca los commits que cumplan tal cual está escrito entre las comillas.
+
+- `git log --grep="INVIE" -i`  
+  Busca los commits que cumplan sin importar mayúsculas o minúsculas.
+
+- `git log -- index.html`  
+  Busca los commits en un archivo en específico.
+
+- `git log -S "Por contenido"`  
+  Buscar los commits con el contenido dentro del archivo.
+
+- `git log > log.txt`  
+  Guardar los logs en un archivo txt.
+
+---
+
+> **Resumen:**  
+> Aprender estos comandos te permite trabajar en equipo y llevar un control detallado del historial de tu proyecto en servidores remotos.
+
+# CLASE 9-A  
+## MIÉRCOLES 4 DE JUNIO DEL 2025  
+## Portafolio 3: Introducción a las ramas o branches de Git (Parte 9)
+
+---
+
+### **¿Qué son las ramas en Git?**
+
+Cuando entramos en el proyecto veremos que nos encontramos con la rama `master`, y es a partir de allí que debe saber que esta es la **rama madre o principal**, y las otras ramas se crean para no afectar a la `master`.
+
+Las **ramas (branches)** son la forma de hacer cambios en nuestro proyecto sin afectar el flujo de trabajo de la rama principal. Esto es útil cuando queremos trabajar una parte muy específica de la aplicación o simplemente experimentar.
+
+La **cabecera o HEAD** representa la rama y el commit de esa rama donde estamos trabajando.  
+Por defecto, esta cabecera aparecerá en el último commit de nuestra rama principal.  
+Pero podemos cambiarlo al crear una rama (`git branch rama`, `git checkout -b rama`) o movernos en el tiempo a cualquier otro commit de cualquier otra rama con los comandos:
+
+- `git reset id-commit`
+- `git checkout rama-o-id-commit`
+
+---
+
+### **Repasa: ¿Qué es Git?**
+
+Git es un sistema de control de versiones que permite gestionar los cambios en proyectos de código, facilitando el trabajo colaborativo y el control de versiones.
+
+---
+
+### **¿Cómo funcionan las ramas en Git?**
+
+Las ramas nos permiten trabajar de forma independiente sobre distintas características o soluciones, sin interferir con la rama principal.  
+Así, podemos experimentar, desarrollar nuevas funcionalidades, o corregir errores sin interrumpir el trabajo principal.
+
+#### **Comandos útiles de ramas en Git:**
+
+```bash
+git branch nombre-rama            # Genera una nueva rama.
+git checkout nombre-rama          # Cambia de una rama a otra.
+git checkout -b rama              # Crea una rama y nos mueve a ella automáticamente.
+git reset id-commit               # Nos lleva a cualquier commit, eliminando los posteriores a ese commit.
+git checkout rama-o-id-commit     # Nos lleva a cualquier commit SIN borrar los posteriores.
+
+Práctica guiada:
+Mientras la rama master cambia normalmente, vamos a crear una rama paralela llamada second para crear nuevas secciones.
+Luego, fusionaremos (merge) esta rama con master para ver cómo quedan los cambios y entender el flujo de ramas en Git.
+
+Al crear otra rama, estamos haciendo una copia de todos los commits de la rama principal. Todos los cambios que hagamos en la nueva rama no afectarán a la rama principal hasta que realicemos un merge.
+
+Pasos básicos en terminal:
+En Ubuntu:
+
+Abrir terminal.
+
+En Windows:
+
+Abrir Git Bash como administrador.
+
+bash
+Copiar
+Editar
+cd Tecnicatura
+cd class-git
+code .          # Abrir proyecto en VS Code (Ubuntu y Windows)
+touch index.html # Crear archivo HTML y agregar un <h1> con tu nombre
+Guardar y previsualizar:
+
+Ctrl + S para guardar.
+
+Clic derecho para abrir con Live Server y ver los cambios.
+
+Comandos de seguimiento y commit:
+
+bash
+Copiar
+Editar
+git status
+git commit -am "mensaje del commit"        # Solo con archivos ya controlados
+git commit -a -m "Mensaje del commit"      # Igual al anterior
+git commit -a                              # Se abrirá VIM para mensaje de commit
+# En VIM: esc + i para escribir mensaje, luego esc, :wq! (Windows) o ctrl + x (Linux)
+Visualización de historial:
+
+bash
+Copiar
+Editar
+git log                # Ver los cambios guardados
+git log --stat         # Ver cambios nombrando cada archivo
+git branch             # Muestra en qué rama estamos
+git show               # Muestra el último cambio realizado
+Pulsa q para salir de los logs.
+
+Crear y cambiar ramas:
+
+bash
+Copiar
+Editar
+git branch second      # Crea una nueva rama llamada 'second'
+git checkout second    # Cambia a la rama 'second'
+git branch             # Muestra la rama actual
+git status             # Muestra HEAD actual
+Limpiar consola:
+
+bash
+Copiar
+Editar
+ctrl + l               # Limpia la consola
+Notas importantes:
+Al crear una nueva rama, todos los commits anteriores de la rama principal se copian.
+
+Los cambios hechos en la nueva rama no afectan a la rama principal hasta que se realiza un merge.
+
+El uso de ramas facilita el desarrollo colaborativo y la experimentación segura en proyectos de software.
+
+## Ejemplo paso a paso: flujo básico de trabajo con ramas
+
+1. **Guarda el archivo del portafolio:**
+    ```bash
+    ctrl + s     # Guardamos la clase del portafolio
+    F5           # Actualizamos el navegador para ver los cambios
+    ```
+
+2. **Verifica el estado de tus archivos:**
+    ```bash
+    git status   # Vemos el archivo que modificamos
+    ```
+
+3. **Agrega los cambios al área de preparación:**
+    ```bash
+    git add .
+    ```
+
+4. **Realiza un commit de los cambios:**
+    ```bash
+    git commit
+    ```
+    - En el editor VIM:
+        - `esc + i` para escribir el mensaje del commit
+        - Escribe el mensaje
+        - `esc` para salir del modo edición
+        - `:wq!` en Windows / `ctrl + x` en Linux para guardar y salir
+        - Si pide confirmación, escribe `s` y luego `Enter`
+
+5. **Verifica nuevamente el estado:**
+    ```bash
+    git status   # No hay nada más para commitear, estamos en la rama 'segunda'
+    ```
+
+6. **Visualiza los cambios realizados:**
+    ```bash
+    git show     # Vemos todo lo que cambiamos
+    q            # Para salir
+    ```
+
+7. **Consulta el historial de commits:**
+    ```bash
+    git log      # Vemos el historial y cómo el HEAD pasó a la rama cabecera
+    q            # Para salir
+    ```
+
+8. **Cambia a la rama principal (`master`):**
+    ```bash
+    git checkout master    # Volvemos a la rama master, desaparecen los cambios hechos en 'segunda'
+    git log               # El historial no muestra lo realizado en la rama secundaria
+    q                     # Para salir
+    ```
+
+9. **Regresa a la rama secundaria (`segunda`):**
+    ```bash
+    git checkout segunda   # Vuelven a aparecer todos los cambios realizados en la rama secundaria
+    ```
+
+---
+
+> **Nota:**  
+> Así puedes comprobar cómo los cambios hechos en una rama no afectan a la principal hasta que se fusionan (merge). Este es uno de los pilares del trabajo en equipo y la experimentación segura en proyectos con Git.
+
+# CLASE 9-B  
+## MIÉRCOLES 4 DE JUNIO DEL 2025  
+## Portafolio 4: Fusión de ramas con Git merge (Parte 10)
+
+---
+
+### **¿Qué es la fusión en Git?**
+
+La **fusión (merge)** en Git es el proceso por el cual el sistema une un historial bifurcado. El comando `git merge` permite integrar líneas de desarrollo independientes, generadas por `git branch`, en una sola rama.  
+Con este comando, podemos crear un nuevo commit que combina dos ramas: la rama actual y la rama que se indica después del comando.
+
+---
+
+### **¿Cómo unir dos ramas en Git?**
+
+Para combinar ramas en tu repositorio local:
+
+1. Usa `git checkout` para cambiarte a la rama donde deseas fusionar (normalmente, la rama principal).
+2. Emplea `git merge` seguido del nombre de la otra rama que deseas integrar.
+
+Esto suele ser una combinación de avance rápido si no hay cambios intermedios.
+
+**Ejemplo:**
+```bash
+git checkout master
+git merge segunda
+Recomendaciones importantes
+Antes de hacer un merge, guarda y commitea tus cambios.
+
+Utiliza comandos básicos como git fetch, git push y git pull para mantener tu repositorio actualizado.
+
+En caso de conflictos durante el merge, resuélvelos cuidadosamente antes de continuar.
+
+git init                    # Crear un repositorio (solo si es nuevo)
+git add .                   # Agregar archivos al área de staging
+git commit -m "mensaje"     # Guardar cambios con un mensaje
+git branch nombre_rama      # Crear una nueva rama
+git checkout nombre_rama    # Cambiar entre ramas
+git push origin rama        # Subir rama al servidor remoto
+git fetch                   # Traer actualizaciones del remoto
+git merge rama              # Fusionar otra rama a la actual
+git pull origin rama        # fetch y merge al mismo tiempo
+git checkout "commit" "archivo"  # Volver a la versión anterior de un archivo
+git reset                   # Volver a un commit anterior (irreversible)
+git reset --soft            # Mantiene cambios en staging
+git reset --hard            # Todo vuelve a la versión seleccionada
+git reset HEAD              # Quita archivos del staging
+git rm                      # Elimina archivos del proyecto (no del historial)
+git rm --cached             # Elimina archivos solo del staging
+git rm --force              # Elimina archivos del proyecto y del disco duro
+git status                  # Estado actual del repositorio
+git log                     # Historial de commits
+git log --stat              # Historial con detalle de archivos cambiados
+git show                    # Cambios de un commit específico
+git diff "commit1" "commit2" # Comparar cambios entre versiones
+git diff                    # Comparar el directorio con staging
+
+# En rama 'segunda': hacemos cambios y los guardamos
+git status
+git commit -am "Finalizado el cambio en rama segunda"
+git status
+
+# Cambiamos a 'master', agregamos un nuevo párrafo y guardamos
+git checkout master
+git commit -am "Agregado el contenido adicional del archivo y un mejor aporte"
+
+# Cambiamos entre ramas para ver los cambios
+git checkout segunda
+git checkout master
+
+# Realizamos el merge
+git merge segunda   # Si hay conflictos, se resuelven desde el editor
+
+# Una vez solucionados los conflictos:
+git commit -am "Arreglando conflicto"
+git status   # Revisar en el navegador y código si algo quedó mal
+git commit -am "Solucionado el conflicto 2"
+
+git merge segunda   # Ahora todo va bien
+git commit -am "Volví a comentar sobre mi área laboral"
+git log
+git commit -am "Guardar estos cambios en el README.md"
+
+# Traer cambios a la rama secundaria
+git checkout segunda
+git merge master
+git commit -am "Cargamos esto ahora"
+
+# Volvemos a master y hacemos el último merge
+git checkout master
+git merge segunda
+
+¿Cómo funciona Git merge?
+Git merge fusiona secuencias de confirmaciones en un solo historial, generalmente para combinar dos ramas. Busca una confirmación de base común y genera una confirmación de fusión que representa la combinación de ambas ramas hasta el resultado final.

@@ -849,3 +849,148 @@ git merge segunda
 
 ¿Cómo funciona Git merge?
 Git merge fusiona secuencias de confirmaciones en un solo historial, generalmente para combinar dos ramas. Busca una confirmación de base común y genera una confirmación de fusión que representa la combinación de ambas ramas hasta el resultado final.
+
+# CLASE 11 – Configura tus llaves SSH en local
+
+## ¿Por qué usar llaves SSH?
+
+Si usamos GitHub solo con usuario y contraseña, si un día perdemos nuestra PC, perdemos todo. Nuestras contraseñas y los proyectos de nuestros clientes estarían en riesgo. Así es como muchos sitios web son hackeados. Para evitar esto, debemos agregar una capa de seguridad más fuerte usando llaves públicas y privadas.
+
+Esto tiene varias ventajas:
+- Nuestra seguridad será mucho mayor.
+- Ya no tendrás que poner nunca más tu usuario y contraseña.
+
+## ¿Cómo funciona el sistema de llaves SSH?
+
+- En nuestra máquina, creamos una **llave privada** y una **llave pública**.
+- La llave pública se envía a GitHub y le decimos:  
+  _"Para este repositorio, usa esta llave pública"_
+- A partir de ahí, nos conectamos por el protocolo **SSH** en vez de HTTPS.
+- La primera vez, GitHub verifica la relación entre la llave pública (que tiene) y la privada (que está en tu PC).
+- Todo esto sucede automáticamente.
+- Puedes añadir una contraseña a tu llave privada para sumar más seguridad.
+- **Importante:** Las llaves SSH son por persona y por máquina (no por repositorio o proyecto).
+
+---
+
+## Crear y configurar llaves SSH en local
+
+### **1. Abrir la terminal**
+
+- **En Windows:**  
+  Abrir **Git Bash** como administrador para tener todos los permisos necesarios.
+- **En Ubuntu/Linux:**  
+  Abrir una terminal sin entrar a ningún proyecto o carpeta específica.
+
+### **2. Ver tu configuración en Git**
+
+```bash
+git config -l
+```
+
+Puedes ejecutar esto desde cualquier ruta de tu PC.
+
+### **3. Actualizar el correo que usas en GitHub**
+
+```bash
+git config --global user.email "alumnos@mail.com"
+```
+
+---
+
+### **4. Generar tus llaves SSH**
+
+```bash
+ssh-keygen -t rsa -b 4096 -C "alumnos@mail.com"
+```
+- Esto genera tu llave pública y privada.
+- El programa preguntará dónde guardar la llave: presiona **Enter** para usar la ubicación por defecto.
+- Puedes crear una contraseña para tu llave privada.  
+  **IMPORTANTE:** Debes recordarla, porque se pedirá cada vez que uses la clave.
+
+---
+
+### **5. Encender el servidor de llaves SSH**
+
+```bash
+eval $(ssh-agent -s)
+```
+Esto deja listo el _servidor_ que gestionará tus llaves SSH.
+
+---
+
+### **6. Añadir tu llave SSH al servidor**
+
+```bash
+ssh-add ~/.ssh/id_gd456123
+```
+- Usa la **ruta de la llave privada** (no la `.pub` que es la pública).
+- `~` es la virgulilla y refiere a tu carpeta home.
+
+---
+
+## ¿Qué es una ruta?
+
+Una ruta es la dirección (ubicación) de un archivo o carpeta en tu computadora.  
+Por ejemplo:  
+`/home/usuario/.ssh/id_rsa` o `C:\Users\TuUsuario\.ssh\id_rsa`
+
+---
+
+## Resumen: Comandos para generar y usar llaves SSH
+
+### **a. Generar llaves SSH**
+
+```bash
+ssh-keygen -t rsa -b 4096 -C "tu@email.com"
+```
+
+### **b. Configurar el sistema**
+
+**Windows/Linux:**
+
+```bash
+eval $(ssh-agent -s)
+ssh-add ruta-donde-guardaste-tu-llave-privada
+```
+
+**Mac:**
+
+```bash
+eval "$(ssh-agent -s)"
+```
+- Si usas OSX Sierra (v10.12) o superior, crea/modifica el archivo `config` en tu carpeta de usuario:
+  
+  ```
+  Host *
+      AddKeysToAgent yes
+      UseKeychain yes
+      IdentityFile ruta-donde-guardaste-tu-llave-privada
+  ```
+
+- Para añadir la llave SSH:
+  
+  ```bash
+  ssh-add -K ruta-donde-guardaste-tu-llave-privada
+  ```
+  (Si da error, prueba sin el argumento `-K`).
+
+---
+
+## Activar el Segundo Factor de Autenticación (2FA) en GitHub
+
+El 2FA agrega una capa más de seguridad a tu cuenta. Si pierdes un dispositivo, tendrás respaldo. Puedes usar apps que generan códigos temporales.
+
+### **Cómo activarlo:**
+
+1. Haz clic en tu perfil (arriba a la derecha).
+2. Ve a **Settings**.
+3. Selecciona **Password and Authentication**.
+4. **GitHub Mobile:**  
+   Instala la app de GitHub Mobile y úsala para la autenticación 2FA.
+5. **Authenticator app:**  
+   Elige "Edit" para agregar una app que genere códigos (por ejemplo, Twilio Authy Authenticator).  
+   Escanea el QR y guarda los datos para tener acceso si cambias de dispositivo.
+
+---
+

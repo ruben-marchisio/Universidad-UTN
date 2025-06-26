@@ -311,3 +311,84 @@ ssh-add -K ~/.ssh/id_rsa
 * Practica cada comando en tu propio repositorio
 * No temas experimentar con ramas
 * ¡La mejor forma de aprender es equivocándose y recuperando el historial! ✨
+
+# Clase 11 Actividad en Python
+
+## Crear un Proyecto Python con Entorno Virtual y Git
+
+A continuación, se detalla el proceso para iniciar un proyecto en Python, crear y activar un entorno virtual, y versionar el trabajo utilizando Git y GitHub.
+
+### 1. Abrir la terminal  
+- En Windows: Git Bash (ejecutar como administrador)  
+- En Linux: terminal normal
+
+### 2. Crear una carpeta para el proyecto
+```bash
+mkdir python-final
+```
+
+### 3. Entrar en la carpeta
+```bash
+cd python-final
+```
+
+### 4. Iniciar un repositorio Git
+```bash
+git init
+```
+
+### 5. Crear el archivo principal
+```bash
+touch finales.py
+```
+
+### 6. Abrir Visual Studio Code en la carpeta
+```bash
+code .
+```
+
+### 7. Verificar la versión de Python instalada
+```bash
+python -V
+python3 -V
+```
+
+### 8. Crear un entorno virtual
+```bash
+python3 -m venv venv
+```
+
+### 9. Activar el entorno virtual
+- En Linux/Mac:
+  ```bash
+  source venv/bin/activate
+  ```
+- En Windows:
+  ```bash
+  venv\Scripts\activate
+  ```
+
+### 10. Actualizar pip
+```bash
+python3 -m pip install --upgrade pip
+```
+
+### 11. ¿Qué es pip y por qué lo actualizamos?
+
+**pip** es el gestor de paquetes por defecto de Python. Permite instalar, actualizar y gestionar librerías que no vienen incluidas con Python, facilitando la incorporación de nuevas funcionalidades a nuestros proyectos.  
+Actualizar pip garantiza que disponemos de la versión más reciente y segura, evitando problemas de compatibilidad y aprovechando mejoras y correcciones de errores.
+
+### 12. Primer commit y conexión al repositorio remoto
+```bash
+git add .
+git commit -m "Primer commit del entorno virtual y archivo principal"
+git remote add origin https://github.com/ruben-marchisio/Hola_Mundo.git
+git branch -M main
+git push -u origin main
+```
+
+### 13. Enlace al repositorio remoto
+
+[https://github.com/ruben-marchisio/Hola_Mundo](https://github.com/ruben-marchisio/Hola_Mundo)
+
+---

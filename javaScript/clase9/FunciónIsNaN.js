@@ -1,6 +1,6 @@
 //funcion isNaN
 
-let edad = "dsad"; // string
+let edad = 15; // string
 
 if (isNaN(edad)) {
     console.log("La edad no es un número");

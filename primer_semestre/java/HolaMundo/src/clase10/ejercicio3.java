@@ -1,3 +1,4 @@
+package clase10;
 
 import java.util.Scanner;
 

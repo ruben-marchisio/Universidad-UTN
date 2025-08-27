@@ -1,3 +1,4 @@
+package clase10;
 
 public class SentenciaControlIFelse {
     public static void main(String[] args) {

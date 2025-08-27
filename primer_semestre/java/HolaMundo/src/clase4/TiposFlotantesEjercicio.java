@@ -1,3 +1,4 @@
+package clase4;
 
 public class TiposFlotantesEjercicio {
     public static void main(String[] args) {

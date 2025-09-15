@@ -1,19 +1,28 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Other/File.java to edit this template
- */
+
 package javaa.clase_5;
 
-/**
- *
- * @author ruben
- */
+import java.util.Scanner;
+
 public class Ejercicio_8 {
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String args[]) {
-        // TODO code application logic here
+            // Creamos el objeto Scanner para leer desde teclado
+        Scanner sc = new Scanner(System.in);
+
+        // Variable donde guardaremos el número ingresado por el usuario
+        int N;
+
+        // Pedimos el número al usuario
+        System.out.print("Ingrese un número: ");
+        N = sc.nextInt();
+
+        // Bucle for: va desde 1 hasta N
+        for (int i = 1; i <= N; i++) {
+            System.out.println(i); // mostramos el número actual
+        }
+
+        // Cerramos el scanner
+        sc.close();
     }
 }

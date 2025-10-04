@@ -1,3 +1,5 @@
+# 9.3 Crear la clase Aritmética: Sumar
+# 9.4 Clase Aritmética: Resta, multiplicación y división
 class Aritmetica:
     """
     El nombre de este tipo de comentarios es : DocString

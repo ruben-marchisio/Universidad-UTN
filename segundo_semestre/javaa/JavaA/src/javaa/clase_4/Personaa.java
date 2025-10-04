@@ -1,8 +1,9 @@
+
 package javaa.clase_4;
 
-public class persona {
-    String nombre;
-    String apellido;
+public class Personaa {
+    public String nombre;
+    public String apellido;
 
     public void obtenerInformacion(){
         System.out.println("Nombre: " + nombre);

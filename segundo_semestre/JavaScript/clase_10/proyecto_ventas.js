@@ -29,7 +29,7 @@ class Producto {
     return this._precio;
   }
 
-  // Setters: validan/modifican estado de forma segura
+  // Setters
   set nombre(nombre) {
     this._nombre = String(nombre);
   }

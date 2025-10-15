@@ -5,8 +5,7 @@
  y salida legible con template literals.
 */
 
-
-//  Clase Producto 
+//  Clase Producto
 class Producto {
   // Contador estático para IDs de productos
   static contadorProductos = 0;
@@ -20,28 +19,38 @@ class Producto {
   }
 
   // Getters
-  get idProducto() { return this._idProducto; }
-  get nombre() { return this._nombre; }
-  get precio() { return this._precio; }
+  get idProducto() {
+    return this._idProducto;
+  }
+  get nombre() {
+    return this._nombre;
+  }
+  get precio() {
+    return this._precio;
+  }
 
   // Setters: validan/modifican estado de forma segura
-  set nombre(nombre) { this._nombre = String(nombre); }
+  set nombre(nombre) {
+    this._nombre = String(nombre);
+  }
   set precio(precio) {
     // Validación simple para evitar valores inválidos
     const n = Number(precio);
-    if (Number.isNaN(n) || n < 0) throw new Error("El precio debe ser un número >= 0");
+    if (Number.isNaN(n) || n < 0)
+      throw new Error("El precio debe ser un número >= 0");
     this._precio = n;
   }
 
-  // Representación 
+  // Representación
   toString() {
     // Usamos template literal para formatear el texto
-    return `Producto { id: ${this._idProducto}, nombre: "${this._nombre}", precio: $${this._precio.toFixed(2)} }`;
+    return `Producto { id: ${this._idProducto}, nombre: "${
+      this._nombre
+    }", precio: $${this._precio.toFixed(2)} }`;
   }
 }
 
-
-//  Clase Orden 
+//  Clase Orden
 class Orden {
   // Contador estático para IDs de órdenes
   static contadorOrdenes = 0;
@@ -52,25 +61,33 @@ class Orden {
     this._idOrden = ++Orden.contadorOrdenes;
     // Almacena instancias de Producto
     this._productos = [];
-    // Métrica simple de cuántos intentos de agregado se hicieron
+    // cuántos intentos de agregado se hicieron
     this._contadorProductosAgregados = 0;
   }
 
-  // Getters de solo lectura
-  get idOrden() { return this._idOrden; }
-  // Devolvemos copia (spread) para evitar mutaciones externas del array interno
-  get productos() { return [...this._productos]; }
-  get contadorProductosAgregados() { return this._contadorProductosAgregados; }
+  // Getters
+  get idOrden() {
+    return this._idOrden;
+  }
+  // Devolvemos copia para evitar mutaciones externas del array interno
+  get productos() {
+    return [...this._productos];
+  }
+  get contadorProductosAgregados() {
+    return this._contadorProductosAgregados;
+  }
 
   // Agrega un producto respetando el tipo y el máximo permitido
   agregarProducto(producto) {
-// aseguramos que sea un Producto real
+    // aseguramos que sea un Producto real
     if (!(producto instanceof Producto)) {
       throw new Error("Solo se pueden agregar instancias de Producto");
     }
     // Regla de capacidad
     if (this._productos.length >= Orden.MAX_PRODUCTOS) {
-      console.warn(`Orden #${this._idOrden}: ya alcanzó el máximo de ${Orden.MAX_PRODUCTOS} productos.`);
+      console.warn(
+        `Orden #${this._idOrden}: ya alcanzó el máximo de ${Orden.MAX_PRODUCTOS} productos.`
+      );
       return false; // señalamos que no se pudo
     }
     this._productos.push(producto);
@@ -83,11 +100,11 @@ class Orden {
     return this._productos.reduce((acc, p) => acc + p.precio, 0);
   }
 
-  // Muestra un resumen legible de la orden
+  // Muestra un resumen
   mostrarOrden() {
     const cabecera = `\n===== Orden #${this._idOrden} =====`;
     const listado = this._productos.length
-      ? this._productos.map(p => ` - ${p.toString()}`).join("\n")
+      ? this._productos.map((p) => ` - ${p.toString()}`).join("\n")
       : " (sin productos)";
     const total = `Total: $${this.calcularTotal().toFixed(2)}`;
     const resumen = `Items: ${this._productos.length}/${Orden.MAX_PRODUCTOS}`;
@@ -97,7 +114,6 @@ class Orden {
     return salida; // útil para asserts/tests automáticos
   }
 }
-
 
 //  VentasTest
 (() => {
@@ -111,7 +127,11 @@ class Orden {
   let productos = [p1, p2, p3, p4, p5, p6];
 
   // Mostramos los productos creados
-    console.log("Productos disponibles:" + productos.map(p => `\n${p.toString()}`).join("") + "\n");
+  console.log(
+    "Productos disponibles:" +
+      productos.map((p) => `\n${p.toString()}`).join("") +
+      "\n"
+  );
 
   // Orden 1: agregamos 3 productos y mostramos
   const orden1 = new Orden();
@@ -122,7 +142,7 @@ class Orden {
 
   // Orden 2: probamos el límite MAX_PRODUCTOS (el 6° no entra)
   const orden2 = new Orden();
-  [p1, p2, p3, p4, p5, p6].forEach(p => orden2.agregarProducto(p));
+  [p1, p2, p3, p4, p5, p6].forEach((p) => orden2.agregarProducto(p));
   orden2.mostrarOrden();
 
   // Demo de setters/getters y toString()

@@ -111,7 +111,7 @@ class Orden {
 
     const salida = `${cabecera}\n${listado}\n${resumen}\n${total}\n======================\n`;
     console.log(salida);
-    return salida; // útil para asserts/tests automáticos
+    return salida; 
   }
 }
 
@@ -145,7 +145,7 @@ class Orden {
   [p1, p2, p3, p4, p5, p6].forEach((p) => orden2.agregarProducto(p));
   orden2.mostrarOrden();
 
-  // Demo de setters/getters y toString()
+  
   p3.precio = 300; // actualizamos precio de un producto
   console.log(`Actualizado: ${p3.toString()}`);
 })();

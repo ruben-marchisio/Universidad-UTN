@@ -2,17 +2,31 @@
 // import data from './data/personal.js'
 // const { nombre, titulo, descripcion1, descripcion2, telefono, ubicacion, redesSociales } = data
 
-const nombre = "Ruben Marchisio"
-const titulo = "Técnico universitario en programacion - UTN"
-const descripcion1 = "Bienvenido a mi portafolio, Soy un desarrollador web"
-const descripcion2 = "Apasionado por crear soluciones digitales innovadoras y funcionales."
-const telefono = "Mi Teléfono personal: 265246586"
-const ubicacion = "Malargüe, Mendoza, Argentina"
+const nombre = "Ruben Marchisio";
+const titulo = "Técnico universitario en programacion - UTN";
+const descripcion1 = "Bienvenido a mi portafolio, Soy un desarrollador web";
+const descripcion2 = "Apasionado por crear soluciones digitales innovadoras y funcionales.";
+const telefono = "Mi Teléfono personal: 265246586";
+const ubicacion = "Malargüe, Mendoza, Argentina";
+
 const redesSociales = [
-  { nombre: "LinkedIn", url: "", icono: "" },
-  { nombre: "GitHub", url: "", icono: "" },
-  { nombre: "Instagram", url: "", icono: "" },
-]
+  { 
+    nombre: "LinkedIn", 
+    url: "https://www.linkedin.com/in/rub%C3%A9n-marchisio-94b458365/", 
+    icono: "fa-brands fa-linkedin"
+  },
+  { 
+    nombre: "GitHub", 
+    url: "https://github.com/ruben-marchisio", 
+    icono: "fa-brands fa-github"
+  },
+  { 
+    nombre: "Instagram", 
+    url: "https://www.instagram.com/ruben.marchisio/", 
+    icono: "fa-brands fa-instagram"
+  },
+];
+
 
 // 📸 Ruta de tu imagen 
 import fotoPerfil from '../assets/foto-perfil.jpeg'
@@ -48,13 +62,17 @@ import fotoPerfil from '../assets/foto-perfil.jpeg'
           target="_blank"
           rel="noopener noreferrer"
           class="btn-red"
+          :title="red.nombre"
+          aria-label="Abrir {{ red.nombre }} en una nueva pestaña"
         >
-          {{ red.nombre }}
+          <i :class="red.icono" aria-hidden="true"></i>
+          <span class="sr-only">{{ red.nombre }}</span>
         </a>
       </nav>
     </div>
   </section>
 </template>
+
 
 <style scoped>
 
@@ -139,29 +157,30 @@ import fotoPerfil from '../assets/foto-perfil.jpeg'
 
 /* === Redes sociales === */
 .redes-sociales {
-  margin-top: 20px;
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
+  justify-content: center; /* Centrar horizontal */
+  align-items: center;     /* Alinear íconos verticalmente */
+  gap: 14px;
+  margin-top: 18px;
 }
 
-.btn-red {
-  display: inline-block;
-  padding: 10px 16px;
-  border-radius: 10px;
-  border: 1px solid var(--border, rgba(148,163,184,0.2));
-  background: rgba(18,26,42,0.6);
-  color: var(--text, #e2e8f0);
-  font-weight: 600;
-  text-decoration: none;
-  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-  box-shadow: 0 0 12px rgba(0,229,255,0.18);
+.btn-red i {
+  font-size: 1.8rem;
+  line-height: 1;
+  transition: .25s ease;
 }
-.btn-red:hover {
-  border-color: var(--border-hover, rgba(148,163,184,0.35));
-  transform: translateY(-1px);
-  box-shadow: 0 0 12px rgba(0,229,255,0.25), 0 0 24px rgba(176,38,255,0.2);
+
+.btn-red:hover i {
+  transform: scale(1.15);
+}
+
+/* Solo texto para lectores de pantalla */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
 }
 
 /* === Responsive === */
